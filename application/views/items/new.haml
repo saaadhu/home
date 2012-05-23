@@ -1,0 +1,16 @@
+%title Add New Item
+
+.errors
+	-if @item && @item.errors.any?
+		-@item.errors.full_messages.each do |msg|
+			%label= msg	
+		
+%form(method='post' action='/item/new') 
+
+	%label Name
+	%input#name(type='textbox' name='name')
+
+	%label Tags
+	%input#tags(type='textbox' name='tags')
+
+	%input(type='submit' value='add')
