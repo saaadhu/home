@@ -1,4 +1,29 @@
 %title Senthil and Leela's Home
 
-<h3>Things to buy list</h3>
-%a{:href => '/item/new'} Add item to master list 
+%div(style="border:1px solid lightgray;float:left") 
+  <h3>Things to buy</h3>
+
+  %hr 
+
+  -@tags.each do |tag|
+    %a(href='#')=tag.name
+
+  %hr
+  %form(method='post' action='/item/buy')
+
+    %table
+      %tr
+        %td
+          %label(for='item_name') Item:
+        %td
+          %input(type='text' name='item_name')
+      %tr
+        %td
+          %label(for='quantity') Quantity:
+        %td
+          %input(type='text' name='quantity')
+      %tr
+        %td(colspan="2" align="center")
+          %input(type='submit' value="Buy")
+  %hr
+  %a{:href => '/item/new'} Add item to master list 

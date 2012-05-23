@@ -13,3 +13,17 @@ a
 	font-size: 12px;
 	text-decoration: none;
 }
+
+label
+{
+	font-size: 12px;
+	font-family: 'Droid Sans', 'Verdana', sans-serif';
+}
+
+hr
+{
+	border:none;
+	background-color:#DDDDDD;
+	color:#DDDDDD;
+	height:1px;
+}
