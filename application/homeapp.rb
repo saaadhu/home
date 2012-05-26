@@ -17,13 +17,22 @@ get '/item/new' do
   haml :'items/new'
 end
 
-post '/item/buy' do
+post '/item/tobuy' do
   @tobuy = Tobuy.new
   item = Item.find_by_name(params[:item_name])
-  @tobuy.item_id = item.id
-  @tobuy.quantity = params[:quantity]
+
+  if item
+    @tobuy.item_id = item.id
+    @tobuy.quantity = params[:quantity]
   
-  @tobuy.save!
+    if @tobuy.save 
+      "Saved"
+    else
+      @tobuy.errors.to_xml
+    end
+  else
+    "No such item!"
+  end
 end
 
 post '/item/new' do

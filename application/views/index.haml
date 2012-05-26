@@ -1,5 +1,15 @@
 %title Senthil and Leela's Home
 
+:javascript
+  $(document).ready(function() {
+    $("#tobuy_form").submit(function(event) { 
+      event.preventDefault();
+      $.post($(this).attr('action'), $(this).serialize(), function(response) {
+        $("#msg").html(response);
+      });
+    });
+  });
+
 %div(style="border:1px solid lightgray;float:left") 
   <h3>Things to buy</h3>
 
@@ -9,7 +19,7 @@
     %a(href='#')=tag.name
 
   %hr
-  %form(method='post' action='/item/buy')
+  %form#tobuy_form(method='post' action='/item/tobuy')
 
     %table
       %tr
@@ -24,6 +34,11 @@
           %input(type='text' name='quantity')
       %tr
         %td(colspan="2" align="center")
-          %input(type='submit' value="Buy")
+          %input#add(type='submit' value="Buy") 
+
+      %tr
+        %td(colspan="2" align="center")
+          #msg
+
   %hr
   %a{:href => '/item/new'} Add item to master list 
