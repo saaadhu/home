@@ -1,9 +1,27 @@
-%title "Our Home"
+%title Our Home
 %html
   %head
   %link{:type => 'text/css', :rel => 'stylesheet', :href => '/css/main.css'}	
+  %link{:type => 'text/css', :rel => 'stylesheet', :href => 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/smoothness/jquery-ui.css'}	
+  %meta(name="viewport" content="width=device-width, initial-scale=1.0")
   %script(lang="javascript" src="/javascript/jquery-1.7.2.min.js")
+  %script(lang="javascript" src="/javascript/jquery.ui.core.js")
+  %script(lang="javascript" src="/javascript/jquery.ui.widget.js")
+  %script(lang="javascript" src="/javascript/jquery.ui.position.js")
+  %script(lang="javascript" src="/javascript/jquery.ui.autocomplete.js")
   %link(href='http://fonts.googleapis.com/css?family=Droid+Sans|Ubuntu+Condensed|Imprima|Doppio+One|Open+Sans' rel='stylesheet' type='text/css')
+
+  :javascript
+    $(document).ready(function() {
+      $("#item_name").autocomplete( { source : '/item/search' });
+
+      $("#ajax_form").submit(function(event) { 
+        event.preventDefault();
+        $.post($(this).attr('action'), $(this).serialize(), function(response) {
+          $("#msg").html(response);
+        });
+      });
+    });
 
   %body
     =yield

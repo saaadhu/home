@@ -10,13 +10,13 @@ h3
 
 a
 {
-	font-size: 12px;
+	#font-size: 12px;
 	text-decoration: none;
 }
 
 label
 {
-	font-size: 12px;
+	#font-size: 12px;
 	font-family: 'Droid Sans', 'Verdana', sans-serif';
 }
 

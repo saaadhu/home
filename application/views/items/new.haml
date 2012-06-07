@@ -1,16 +1,32 @@
-%title Add New Item
-
 .errors
-	-if @item && @item.errors.any?
-		-@item.errors.full_messages.each do |msg|
-			%label= msg	
+  -if @item && @item.errors.any?
+    -@item.errors.full_messages.each do |msg|
+      %label= msg	
 		
-%form(method='post' action='/item/new') 
+%form#ajax_form(method='post' action='/item/new') 
 
-	%label Name
-	%input#name(type='textbox' name='name')
+  %table
+    %tr
+      %td
+        Name
+      %td
+        %input#item_name(type='textbox' name='name')
 
-	%label Tags
-	%input#tags(type='textbox' name='tags')
+    %tr
+      %td
+        Tags
+      %td
+        %input#tags(type='textbox' name='tags')
 
-	%input(type='submit' value='add')
+    %tr
+      %td
+        Typical Quantity
+      %td
+        %input#quantity(type='textbox' name='quantity')
+
+      %tr
+        %td(colspan='2' align='center')
+          %input#add(type="submit" value="Add")
+      %tr
+        %td(colspan=2 align='center')
+          #msg

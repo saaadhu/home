@@ -1,44 +1,37 @@
-%title Senthil and Leela's Home
 
-:javascript
-  $(document).ready(function() {
-    $("#tobuy_form").submit(function(event) { 
-      event.preventDefault();
-      $.post($(this).attr('action'), $(this).serialize(), function(response) {
-        $("#msg").html(response);
-      });
-    });
-  });
-
-%div(style="border:1px solid lightgray;float:left") 
+%div(style="border:0px solid lightgray;float:left;padding-left:2px;") 
   <h3>Things to buy</h3>
 
-  %hr 
 
-  -@tags.each do |tag|
-    %a(href='#')=tag.name
+  .tags
+    -@tags.each do |tag|
+      -num_items_to_buy_in_tag = tag.items.find_all_by_should_buy(1).count
+      -if num_items_to_buy_in_tag > 0
+        -max_items = 50
+        -font_size = 10 + (num_items_to_buy_in_tag / 30.0 * 25).ceil
+        -text = tag.name + " (" + num_items_to_buy_in_tag.to_s + ")"
+        %a{ :href => '/tags/tobuy/' + tag.name, :style => 'font-size:' + font_size.to_s + 'px' }=text
 
-  %hr
-  %form#tobuy_form(method='post' action='/item/tobuy')
+  %br
+  %br
+  %form#ajax_form(method='post' action='/item/tobuy' style="margin-left:0px;padding-left:0px;")
 
-    %table
+    %table(style="margin-left:0px;padding-left:0px;")
       %tr
         %td
-          %label(for='item_name') Item:
-        %td
-          %input(type='text' name='item_name')
-      %tr
-        %td
-          %label(for='quantity') Quantity:
-        %td
-          %input(type='text' name='quantity')
-      %tr
-        %td(colspan="2" align="center")
-          %input#add(type='submit' value="Buy") 
+          %input#item_name(type='text' name='item_name' size='10' style="padding-left:0px")
 
       %tr
-        %td(colspan="2" align="center")
+        %td(align="center")
+          %input#add(type='submit' value="Add" ) 
+
+      %tr
+        %td(align="center")
           #msg
 
-  %hr
+%div(style="border:0px solid lightgray;float:left;margin-left:15px;") 
+  %h3 Purchases
+  %a{:href => '/item/buy'} Record buy  
+  %br
+  %br
   %a{:href => '/item/new'} Add item to master list 

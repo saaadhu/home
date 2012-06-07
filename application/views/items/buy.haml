@@ -1,0 +1,29 @@
+%form#ajax_form(action='/item/buy' method='post')
+
+  %table
+
+    %tr
+      %td
+        %label Item:
+      %td
+        %input#item_name{ :type => 'text', :name => 'item_name', :value => @item_name }
+
+    %tr
+      %td
+        %label Quantity:
+      %td
+        %input#quantity{ :type => 'text', :name => 'quantity', :value => @quantity }
+
+    %tr
+      %td
+        %label Price:
+      %td
+        %input#price{ :type => 'text', :name => 'price'}
+
+    %tr
+      %td(colspan=2 align="center")
+        %input(type='submit' value='Add')
+
+    %tr
+      %td(colspan="2" align="center")
+        #msg

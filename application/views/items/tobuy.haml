@@ -1,0 +1,23 @@
+%h2
+  =@tag_name 
+  to buy
+
+%table(cellspacing=5 cellpadding=5 )
+  %th
+    Name
+  %th
+    Quantity
+
+  -index = 0
+  -@items.each do |item|
+    -color = index % 2 == 0 ? '#EEEEEE' : '#FFFFFF'
+    -index = index + 1
+  
+    %tr{ :style => "background:#{color}" }
+      %td
+        =item.name
+      %td
+        =item.typical_quantity
+      %td
+        %a(href="/item/buy?item_name=#{item.name}&quantity=#{item.typical_quantity}")Buy
+    
