@@ -15,6 +15,10 @@
 
     :javascript
       $(document).ready(function() {
+
+        $(document).ajaxStart(function() { $.mobile.showPageLoadingMsg(); });
+        $(document).ajaxStop(function() { $.mobile.hidePageLoadingMsg(); });
+        
         $("#item_name").autocomplete( { source : '/item/search' });
 
         $("#ajax_form").submit(function(event) { 
