@@ -12,7 +12,7 @@ ActiveRecord::Base.establish_connection(:adapter => 'sqlite3', :dbfile =>'db/hom
 
 get '/' do
   @tags = Tag.all
-  @current_month_amount = Purchase.get_amount_for_current_month
+  @current_month_amount = Purchase.get_amount_for_current_month.total_amount
   haml :index
 end
 
