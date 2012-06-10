@@ -1,3 +1,5 @@
+%div(style="border:1px solid lightgray;clear:both;float:none;align:center") 
+  ="<span style='color:gray;font-size:25pt;'>#{@current_month_amount}</span> spent so far this month."
 
 %div(style="border:0px solid lightgray;float:left;padding-left:2px;") 
   <h3>Things to buy</h3>
@@ -28,9 +30,10 @@
         %td(align="center")
           #msg
 
-%div(style="border:0px solid lightgray;float:left;margin-left:15px;") 
+%div(style="border:0px solid lightgray;float:left;") 
   %h3 Purchases
   %a{:href => '/item/buy'} Record buy  
   %br
   %br
   %a{:href => '/item/new'} Add item to master list 
+

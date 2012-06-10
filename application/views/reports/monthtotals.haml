@@ -1,0 +1,13 @@
+%table(cellspacing=5 cellpadding=5 )
+  %th
+    Month/Year
+  %th
+    Amount (Rs)
+  -month_names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  -@purchases.each do |purchases_by_month|
+    %tr
+      %td
+        ="#{month_names[purchases_by_month.month.to_i - 1]} - #{purchases_by_month.year}"
+      %td
+        =purchases_by_month.total_amount
+

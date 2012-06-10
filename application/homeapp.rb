@@ -12,6 +12,7 @@ ActiveRecord::Base.establish_connection(:adapter => 'sqlite3', :dbfile =>'db/hom
 
 get '/' do
   @tags = Tag.all
+  @current_month_amount = Purchase.get_amount_for_current_month.total_amount
   haml :index
 end
 
@@ -61,6 +62,11 @@ post '/item/tobuy' do
   else
     item.errors.to_xml
   end
+end
+
+get '/reports/monthtotals' do
+  @purchases = Purchase.get_purchase_amounts_by_month
+  haml :'reports/monthtotals'
 end
 
 get '/item/buy' do
