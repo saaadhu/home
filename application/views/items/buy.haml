@@ -1,4 +1,4 @@
-%form#ajax_form(action='/item/buy' method='post')
+%form#ajax_form(action='/item/buy' method='post' data-ajax="false")
 
   %table
 
@@ -22,7 +22,7 @@
 
     %tr
       %td(colspan=2 align="center")
-        %input(type='submit' value='Add')
+        %input(type='submit' value='Add' data-inline="true")
 
     %tr
       %td(colspan="2" align="center")

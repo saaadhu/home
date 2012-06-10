@@ -3,30 +3,31 @@
     -@item.errors.full_messages.each do |msg|
       %label= msg	
 		
-%form#ajax_form(method='post' action='/item/new') 
+%form#ajax_form(method='post' action='/item/new' data-ajax='false') 
 
   %table
     %tr
       %td
         Name
       %td
-        %input#item_name(type='textbox' name='name')
+        %input#item_name(type='text' name='name')
 
     %tr
       %td
         Tags
       %td
-        %input#tags(type='textbox' name='tags')
+        %input#tags(type='text' name='tags')
 
     %tr
       %td
         Typical Quantity
       %td
-        %input#quantity(type='textbox' name='quantity')
+        %input#quantity(type='text' name='quantity')
 
       %tr
         %td(colspan='2' align='center')
-          %input#add(type="submit" value="Add")
+          %input#add(type="submit" value="Add" data-inline="true")
       %tr
         %td(colspan=2 align='center')
           #msg
+

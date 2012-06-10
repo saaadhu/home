@@ -2,7 +2,6 @@
 %div(style="border:0px solid lightgray;float:left;padding-left:2px;") 
   <h3>Things to buy</h3>
 
-
   .tags
     -@tags.each do |tag|
       -num_items_to_buy_in_tag = tag.items.find_all_by_should_buy(1).count
@@ -14,16 +13,16 @@
 
   %br
   %br
-  %form#ajax_form(method='post' action='/item/tobuy' style="margin-left:0px;padding-left:0px;")
+  %form#ajax_form(method='post' action='/item/tobuy' style="margin-left:0px;padding-left:0px;" data-ajax="false")
 
     %table(style="margin-left:0px;padding-left:0px;")
       %tr
         %td
-          %input#item_name(type='text' name='item_name' size='10' style="padding-left:0px")
+          %input#item_name(type='text' name='item_name')
 
       %tr
         %td(align="center")
-          %input#add(type='submit' value="Add" ) 
+          %input#add(type='submit' value="Add" data-inline="true" ) 
 
       %tr
         %td(align="center")
